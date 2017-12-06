@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Treasured Login</string>
+
+    <string name="occ_logo_text">Orange Coast College pirate logo</string>
+    <string name="welcome_message">Welcome %1$s</string>
+    <string name="pirates_booty">You Have Earned The Pirate\'s Booty!</string>
+
+    <string name="label_emailpassword">Email/Password Authentication</string>
+    <string name="desc_emailpassword">Use an email and password to authenticate with Firebase.</string>
+
+    <string name="sign_in">Sign In</string>
+    <string name="create_account">Create Account</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="verify_email">Verify Email</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="auth_failed">Authentication failed</string>
+    <string name="status_verification_failed">Verification failed</string>
+    <string name="status_verification_succeeded">Verification succeeded</string>
+    <string name="status_sign_in_failed">Sign-in failed</string>
+
+    <string name="emailpassword_title_text">Please sign in or create new account.</string>
+</resources>
