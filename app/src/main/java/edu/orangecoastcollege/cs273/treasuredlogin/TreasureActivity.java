@@ -9,7 +9,15 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class TreasureActivity extends AppCompatActivity {
+/**
+ * This activity shows the "booty" when the user successfully logins from <code>LoginActivity</code>.
+ *
+ * @author Derek Tran
+ * @version 1.0
+ * @since December 5, 2017
+ */
+public class TreasureActivity extends AppCompatActivity
+{
 
     //TODO (1): Add Firebase member variables (auth and user)
     // Connection to the Firebase service
@@ -18,10 +26,10 @@ public class TreasureActivity extends AppCompatActivity {
     private FirebaseUser mUser;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_treasure);
-
 
 
         //TODO (2): Initialize Firebase authentication
@@ -38,6 +46,12 @@ public class TreasureActivity extends AppCompatActivity {
 
     // TODO (5): Create a public void handleSignOut(View v) that signs out of Firebase authentication,
     // TODO (5): finishes this activity and starts a new Intent back to the LoginActivity.
+
+    /**
+     * Signs out the user and takes them back to <code>LoginActivity</code>.
+     *
+     * @param v The view that called this method.
+     */
     public void handleSignOut(View v)
     {
         mAuth.signOut();

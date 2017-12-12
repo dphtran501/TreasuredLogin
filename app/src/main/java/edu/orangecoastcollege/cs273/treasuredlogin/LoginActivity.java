@@ -15,7 +15,15 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class LoginActivity extends AppCompatActivity {
+/**
+ * This activity signs in the user when the user inputs their email and correct corresponding password.
+ *
+ * @author Derek Tran
+ * @version 1.0
+ * @since December 5, 2017
+ */
+public class LoginActivity extends AppCompatActivity
+{
 
     private static final String TAG = "TreasuredLogin";
 
@@ -29,7 +37,8 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseUser mUser;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -82,27 +91,24 @@ public class LoginActivity extends AppCompatActivity {
         if (!isValidInput()) return;
 
         // Create a new account with Firebase
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task)
-                    {
-                        // Check the result (task)
-                        if (task.isSuccessful())
-                        {
-                            // Alert user account was created successfully
-                            Toast.makeText(LoginActivity.this,
-                                    "Account created successfully. Please verify account in your email.", Toast.LENGTH_LONG).show();
-                            mUser = mAuth.getCurrentUser();
-                            mUser.sendEmailVerification();
-                        }
-                        else
-                        {
-                            Toast.makeText(LoginActivity.this,
-                                    "Account already exists, Please sign in, or use different email.", Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
+        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>()
+        {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task)
+            {
+                // Check the result (task)
+                if (task.isSuccessful())
+                {
+                    // Alert user account was created successfully
+                    Toast.makeText(LoginActivity.this, "Account created successfully. Please verify account in your email.", Toast.LENGTH_LONG).show();
+                    mUser = mAuth.getCurrentUser();
+                    mUser.sendEmailVerification();
+                } else
+                {
+                    Toast.makeText(LoginActivity.this, "Account already exists, Please sign in, or use different email.", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 
     // DONE: Create a private void signIn(String email, String password) method
@@ -111,27 +117,32 @@ public class LoginActivity extends AppCompatActivity {
     {
         if (!isValidInput()) return;
 
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task)
-                    {
-                        if (task.isSuccessful())
-                        {
-                            mUser = mAuth.getCurrentUser();
-                            if (mUser.isEmailVerified()) goToTreasure();
-                            else Toast.makeText(LoginActivity.this,
-                                    "Please verify your account in the email: " + mUser.getEmail(), Toast.LENGTH_LONG).show();
-                        }
-                        else Toast.makeText(LoginActivity.this,
-                                "Sign in failed. Please try again.", Toast.LENGTH_LONG).show();
-                    }
-                });
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>()
+        {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task)
+            {
+                if (task.isSuccessful())
+                {
+                    mUser = mAuth.getCurrentUser();
+                    if (mUser.isEmailVerified()) goToTreasure();
+                    else
+                        Toast.makeText(LoginActivity.this, "Please verify your account in the email: " + mUser.getEmail(), Toast.LENGTH_LONG).show();
+                } else
+                    Toast.makeText(LoginActivity.this, "Sign in failed. Please try again.", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
 
     // DONE: Create a public void handleLoginButtons(View v) that checks the id of the button clicked.
     // DONE: If the button is createAccountButton, call the createAccount() method, else if it's signInButton, call the signIn() method.
+
+    /**
+     * Handles the actions of the buttons for this activity.
+     *
+     * @param v The button that called this method.
+     */
     public void handleLoginButtons(View v)
     {
         switch (v.getId())
